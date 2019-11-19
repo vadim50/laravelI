@@ -11,6 +11,24 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('user/{id}',function($id){
+	return 'User'.$id;
+});
+
+Route::get('cat_{id?}',function($name){
+	echo '<h1>'.$name.'</h1>';
+});
+
+Route::get('id/{i?}',['uses'=>'UserController@action'])->where('i','[0-9]+');
+
+
+Route::post('/form',['uses'=>'UserController@form']);
+
+Route::get('search/{search}', function ($search) {
+    return $search;
+})->where('search', '.*');
